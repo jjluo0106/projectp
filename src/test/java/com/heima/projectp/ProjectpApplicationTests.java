@@ -42,6 +42,12 @@ class ProjectpApplicationTests {
     @Test
     public void ttest(){
 
+        String s = "0.1.2.3.4.5.6.7.8.9";
+
+        int i = s.lastIndexOf(".");
+
+        System.out.println(s.substring(i));
+
 
 
 

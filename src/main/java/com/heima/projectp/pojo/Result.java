@@ -17,6 +17,16 @@ public class Result {
         return new Result("success",200,"Request successful",data);
     }
 
+    public static Result msg(String msg){
+        return new Result("success", 200, msg, "");
+    }
+
+    
+
+    public static Result success(String s , Object data){
+        return new Result("success",200,s,data);
+    }
+
     public static Result error(){
         return new Result("error",404,"Resource not found","");
     }

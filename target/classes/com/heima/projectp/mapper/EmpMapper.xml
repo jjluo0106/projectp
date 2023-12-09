@@ -25,20 +25,21 @@
         </if>
     </delete>
 
-
     <!--依照ID修改員工-->
-    <update id="EmpUpdateById">
+    <update id="EmpUpdate">
         update emp
         <set>
-            username = #{username} ,
-            password = #{password},
-            name = #{name},
-            gender = #{gender},
-            image = #{image},
-            job = #{job}
+            <if test=" username != null and username != ''">username = #{username} ,</if>
+            <if test=" password != null and password != ''">password = #{password},</if>
+            <if test=" name != null and name != ''">name = #{name},</if>
+            <if test=" gender != null and gender != ''">gender = #{gender},</if>
+            <if test=" image != null and image != ''">image = #{image},</if>
+            <if test=" job != null and job != ''">job = #{job}</if>
+            , update_time = NOW()
         </set>
         where id = #{id};
     </update>
+
 
     <!--&lt;!&ndash;頁數查詢&ndash;&gt;-->
     <!--    <select id="EmpPage" resultType="com.heima.projectp.pojo.Emp">-->
@@ -75,4 +76,12 @@
         select * from emp where id = #{id};
 
     </select>
+    <!--登入教驗-->
+    <select id="EmpSelectByUsernameAndPassword">
+        select * from emp
+        where username = #{username}
+        and password = #{password};
+    </select>
+
+
 </mapper>

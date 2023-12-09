@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -50,5 +49,12 @@ public class EmpService {
         log.info("p.getTotal():{}, p.getList():{}",p.getTotal(),  p.getResult());
 
         return new PageBean((int) p.getTotal(), p.getResult());
+    }
+
+    public void EmpUpdate(Emp emp) {
+        empMapper.EmpUpdate(emp);
+    }
+
+    public Integer login(Emp emp) {
     }
 }
