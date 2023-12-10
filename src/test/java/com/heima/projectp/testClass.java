@@ -2,16 +2,19 @@ package com.heima.projectp;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.heima.projectp.mapper.EmpMapper;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.logging.LogLevel;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class ProjectpApplicationTests {
-    @Autowired
-    EmpMapper empMapper;
+
+import java.util.Date;
+import java.util.HashMap;
+
+//@SpringBootTest
+class testClass {
+//    @Autowired
+//    EmpMapper empMapper;
 
 
     @Test
@@ -40,7 +43,7 @@ class ProjectpApplicationTests {
     }
 
     @Test
-    public void ttest(){
+    public void ttest() {
 
         String s = "0.1.2.3.4.5.6.7.8.9";
 
@@ -48,14 +51,38 @@ class ProjectpApplicationTests {
 
         System.out.println(s.substring(i));
 
-
-
-
-
     }
 
+//令牌加密
+    @Test
+    public void testJwt() {
+        HashMap<String, Object> claims = new HashMap<>();
+        claims.put("id", 1);
+        claims.put("name", "tom");
 
+        String jwt = Jwts.builder()
+                .signWith(SignatureAlgorithm.HS256, "secretKey123")
+                .setClaims(claims)
+                .setExpiration(new Date(System.currentTimeMillis() + 3600 * 1000))
+                .compact();
+        System.out.println(jwt);
+    }
+//令牌解密
+    @Test
+    public void parseJwt() {
+        Claims body = Jwts.parser().
+                setSigningKey("heima").
+                parseClaimsJws("eyJhbGciOiJIUzI1NiJ9.eyJwYXNzd29yZCI6InBhc3N3b3JkIiwibmFtZSI6IlRvbTIyIiwiZXhwIjoxNzAyMjEzMjQ3fQ.OTdNatdGrlZTmiXACDBoFMtdjXuFnMXpqvjGLcrDHtI")
+                .getBody();
 
+        System.out.println(body);
+        System.out.println("現在時間戳 :" + System.currentTimeMillis());
 
-    public final int c = 1;
+        System.out.println( "剩餘時間 : " + ((body.getExpiration().getTime()) - System.currentTimeMillis())/1000 + "秒" );
+    }
+
+    @Test
+    public void tttt() {
+        System.out.println("ttttt");
+    }
 }

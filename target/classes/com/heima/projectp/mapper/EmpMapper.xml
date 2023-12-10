@@ -77,10 +77,9 @@
 
     </select>
     <!--登入教驗-->
-    <select id="EmpSelectByUsernameAndPassword">
+    <select id="EmpSelectByUsername">
         select * from emp
-        where username = #{username}
-        and password = #{password};
+        where username = #{username};
     </select>
 
 

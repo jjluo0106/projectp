@@ -55,6 +55,27 @@ public class EmpService {
         empMapper.EmpUpdate(emp);
     }
 
-    public Integer login(Emp emp) {
+    public Emp login(Emp emp) {
+        List<Emp> emps = empMapper.EmpSelectByUsername(emp);
+        String password = emp.getPassword();
+        log.info("輸入之帳號 {} 密碼 {}",emp.getUsername(),password);
+        if(emps.size()==0){
+            log.info("帳號尚未註冊");
+            return null;
+        }else if(emps.size() >=2){
+            log.info("重複帳號!!");
+            return null;
+        }else {
+
+            if (emps.get(0).getPassword().equals(password)){
+                log.info("登入成功!!");
+                return emps.get(0);
+            }else if (!emps.get(0).getPassword().equals(password)){
+                log.info("密碼錯誤!!");
+                return null;
+            }
+        }
+        log.info("系統異常!!");
+        return null;
     }
 }

@@ -28,10 +28,13 @@ public interface EmpMapper {
     Emp EmpSelectById(Integer id);
     /**修改員工資料*/
     void EmpUpdate(Emp emp);
-    /**登入*/
-    void EmpSelectByUsernameAndPassword(Emp emp);
+    /**
+     * 登入
+     *
+     * @return
+     */
+    List<Emp> EmpSelectByUsername(Emp emp);
 
-    Integer login(Emp emp);
 
 
 //    /**依照 頁數,一次顯示數量 查詢員工*/
