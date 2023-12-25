@@ -1,6 +1,4 @@
 package com.heima.projectp.controller;
-
-import com.heima.projectp.mapper.EmpMapper;
 import com.heima.projectp.pojo.Emp;
 import com.heima.projectp.pojo.Result;
 import com.heima.projectp.service.EmpService;
@@ -10,17 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 @Slf4j
 @RestController
 public class LoginController {
     @Autowired
     EmpService empService;
-
     @PostMapping("/login")
     public Result login(@RequestBody Emp emp){
         Emp login = empService.login(emp);
@@ -31,7 +24,6 @@ public class LoginController {
             map.put("password",login.getPassword());
             s = JwtUtils.generateJWT(map);
         }
-
         return login != null? Result.success(s):Result.msg("登入失敗!!");
     }
 }

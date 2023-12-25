@@ -8,6 +8,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.junit.jupiter.api.Test;
 
 
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -82,7 +84,7 @@ class testClass {
     }
 
     @Test
-    public void tttt() {
-        System.out.println("ttttt");
+    public void tttt() throws ScriptException {
+        System.out.println(new ScriptEngineManager().getEngineByName("nashorn").eval("1+2"));
     }
 }

@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 @Slf4j
 @RestController
@@ -60,9 +61,9 @@ public class EmpController {
      */
     @RequestMapping("/empSelectAll")
     @GetMapping
-    public Result empSelectAll(){
+    public Result empSelectAll() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         List<Emp> list = empService.EmpSelectAll();
-        log.info("查询了全部部门的数据   {}","看得到我吗?");
+        log.info("查询了全部部门的数据");
         return Result.success(list);
     }
 

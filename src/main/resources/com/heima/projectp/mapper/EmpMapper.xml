@@ -25,6 +25,16 @@
         </if>
     </delete>
 
+
+    <!--依照demp_id删除员工-->
+    <delete id="EmpDeleteByDeptId">
+        <if test="dept_id != null and dept_id != ''">
+            delete from emp where dept_id =
+                #{id}
+
+        </if>
+    </delete>
+
     <!--依照ID修改員工-->
     <update id="EmpUpdate">
         update emp

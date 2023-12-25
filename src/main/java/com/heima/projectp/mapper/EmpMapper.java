@@ -19,6 +19,10 @@ public interface EmpMapper {
 
     /**删除员工*/
     public Integer EmpDeleteById(List<Integer> ids);
+    /**依照dept_id刪除員工*/
+    void EmpDeleteByDeptId(Integer id);
+
+
     /**修改員工*/
     void EmpUpdateById(Integer id);
     /**修改员工*/
@@ -34,6 +38,7 @@ public interface EmpMapper {
      * @return
      */
     List<Emp> EmpSelectByUsername(Emp emp);
+
 
 
 

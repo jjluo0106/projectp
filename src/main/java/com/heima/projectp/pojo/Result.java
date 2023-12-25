@@ -27,8 +27,8 @@ public class Result {
         return new Result("success",200,s,data);
     }
 
-    public static Result error(){
-        return new Result("error",404,"Resource not found","");
+    public static Result error(String s){
+        return new Result("error",404,s,"");
     }
 
 }

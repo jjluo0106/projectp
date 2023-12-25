@@ -2,13 +2,18 @@ package com.heima.projectp.service;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.heima.projectp.anno.CostumeAnno;
+import com.heima.projectp.aop.CutCut;
 import com.heima.projectp.mapper.EmpMapper;
 import com.heima.projectp.pojo.Emp;
 import com.heima.projectp.pojo.PageBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 
 @Slf4j
@@ -16,8 +21,22 @@ import java.util.List;
 public class EmpService {
     @Autowired
     EmpMapper empMapper;
-    public List<Emp> EmpSelectAll(){
+
+//    @CutCut
+    @CostumeAnno
+    @Transactional
+    public List<Emp> EmpSelectAll() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         List<Emp> emps = empMapper.EmpSelectAll();
+
+//        Method method = Emp.class.getMethod("getUsername");
+//        String string = method.invoke(emps.get(0)).toString();
+//        log.info("获取反射 : {}",string);
+//
+//        Method method1 = Emp.class.getMethod("setUsername", String.class);
+//        method1.invoke(emps.get(0),string + "000");
+//
+//        string = method.invoke(emps.get(0)).toString();
+//        log.info("获取修改后反射 : {}",string);
         return emps;
     }
 
@@ -31,7 +50,8 @@ public class EmpService {
 
     public void EmpUpdateById(Integer id) { empMapper.EmpUpdateById(id);}
 
-
+    @CostumeAnno
+    @Transactional
     public Emp EmpSelectById(Integer id) {
         Emp emp = empMapper.EmpSelectById(id);
         return emp;
@@ -78,4 +98,7 @@ public class EmpService {
         log.info("系統異常!!");
         return null;
     }
+
+
+
 }
