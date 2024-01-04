@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 @Slf4j
 @RestController
@@ -73,8 +74,21 @@ public class EmpController {
      * @return
      */
     @GetMapping("/{id}")
-    public Result empSelectById(@PathVariable Integer id){
+    public Result empSelectById(@PathVariable Integer id) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Emp emp = empService.EmpSelectById(id);
+
+        //测试反射-------------------------
+        Method methodGetUsername = emp.getClass().getMethod("getUsername");
+
+        System.out.println("原本反射值 : " + methodGetUsername.invoke(emp));
+
+        Method methodSetUsername = emp.getClass().getMethod("setUsername", String.class);
+
+        Object invoke = methodSetUsername.invoke(emp, "66666");
+
+
+        System.out.println("修改后 : " + methodGetUsername.invoke(emp));
+
         return Result.success(emp);
     }
 
