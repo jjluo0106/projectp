@@ -19,3 +19,7 @@ mybatis:
 logging:
   level:
     org.springframework.jdbc.support.JdbcTransactionManager: debug
+
+server:
+  address: localhost
+  port: 8080

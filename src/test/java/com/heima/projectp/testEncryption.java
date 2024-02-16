@@ -61,6 +61,14 @@ public class testEncryption {
 
         System.out.println(sb.toString());
 //        log.info(sb.toString());
+    }
 
+    @Test
+    public void testSplit(){
+        String s = "123";
+
+        String[] split = s.split(",");
+
+        System.out.println(split[0]);
     }
 }

@@ -3,6 +3,7 @@ package com.heima.projectp.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @AllArgsConstructor
@@ -16,13 +17,6 @@ public class Result {
     public static Result success(Object data){
         return new Result("success",200,"Request successful",data);
     }
-
-    public static Result msg(String msg){
-        return new Result("success", 200, msg, "");
-    }
-
-    
-
     public static Result success(String s , Object data){
         return new Result("success",200,s,data);
     }

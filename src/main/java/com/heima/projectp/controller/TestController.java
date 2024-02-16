@@ -3,9 +3,7 @@ package com.heima.projectp.controller;
 import jakarta.servlet.ServletInputStream;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,7 +16,7 @@ public class TestController {
 
 
     @RequestMapping("/test")
-    public void testGetRequest(HttpServletRequest request) throws Exception {
+    public String testGetRequest(HttpServletRequest request) throws Exception {
         log.info("測試");
         String method = request.getMethod();
         String contentType = request.getContentType();
@@ -33,6 +31,7 @@ public class TestController {
         Set<Map.Entry<String, String>> entries = stringStringMap.entrySet();
         Iterator<Map.Entry<String, String>> iterator = entries.iterator();
 
+        return "請求成功！";
     }
 
 
@@ -83,4 +82,5 @@ public class TestController {
         log.info("输入流返回的内容：" + sb.toString());
         return sb.toString();
     }
+
 }

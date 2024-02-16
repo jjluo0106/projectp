@@ -24,6 +24,6 @@ public class LoginController {
             map.put("password",login.getPassword());
             s = JwtUtils.generateJWT(map);
         }
-        return login != null? Result.success(s):Result.msg("登入失敗!!");
+        return login != null? Result.success(s):Result.error("登入失敗!!");
     }
 }
