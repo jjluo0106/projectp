@@ -125,9 +125,42 @@
             <version>2.11.0</version> <!-- 根据需要选择版本号 -->
         </dependency>
 
+<!--redis_jedis依賴-->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+
+<!--單元測試-->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.7.0</version>
+        </dependency>
+
+<!--MariaDB驅動-->
+
+        <!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>3.0.8</version>
+        </dependency>
+
+<!--Swagger-->
+        <!-- https://mvnrepository.com/artifact/com.github.xiaoymin/knife4j-openapi3-spring-boot-starter -->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-openapi3-spring-boot-starter</artifactId>
+            <version>4.1.0</version>
+        </dependency>
 
 
     </dependencies>
+
+
+
 
     <build>
         <plugins>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.heima.mapper.EmpMapper">
+
+    <!--新增-->
+    <insert id="EmpInsert">
+        insert into db1.emp(id, username, password, name, gender, image, job, entry_date, depId, create_time,
+        update_time)
+        values (
+        null, #{username}, #{password}, #{name}, #{gender}, #{image}, #{job}, #{entry_date}, #{depId}, NOW(), NOW()
+        )
+    </insert>
+
+
+    <!--依照ID删除员工-->
+    <delete id="EmpDeleteById">
+        <if test="ids != null and ids != ''">
+            delete from emp where id in
+            <foreach collection="ids" item="id" separator="," open="(" close=")">
+                #{id}
+            </foreach>
+        </if>
+    </delete>
+
+
+    <!--依照demp_id删除员工-->
+    <delete id="EmpDeleteByDeptId">
+        <if test="dept_id != null and dept_id != ''">
+            delete from emp where dept_id =
+                #{id}
+
+        </if>
+    </delete>
+
+    <!--依照ID修改員工-->
+    <update id="EmpUpdate">
+        update emp
+        <set>
+            <if test=" username != null and username != ''">username = #{username} ,</if>
+            <if test=" password != null and password != ''">password = #{password},</if>
+            <if test=" name != null and name != ''">name = #{name},</if>
+            <if test=" gender != null and gender != ''">gender = #{gender},</if>
+            <if test=" image != null and image != ''">image = #{image},</if>
+            <if test=" job != null and job != ''">job = #{job}</if>
+            , update_time = NOW()
+        </set>
+        where id = #{id};
+    </update>
+
+
+    <!--&lt;!&ndash;頁數查詢&ndash;&gt;-->
+    <!--    <select id="EmpPage" resultType="pojo.com.heima.Emp">-->
+    <!--        select * from emp limit #{page},#{team};-->
+    <!--    </select>-->
+    <!--&lt;!&ndash;返回總筆數&ndash;&gt;-->
+    <!--    <select id="EmpMax" resultType="java.lang.Integer">-->
+    <!--        select count(*) from emp;-->
+    <!--    </select>-->
+    <!--依照頁數查詢員工-->
+
+
+    <!--查詢所有-->
+    <select id="EmpSelectAll" resultType="com.heima.pojo.Emp">
+        select * from emp;
+    </select>
+
+
+    <select id="EmpSelectAll2" resultType="com.heima.pojo.Emp">
+        select * from emp
+        <where>
+            <if test="name != null and name !=''">
+                name like concat('%',#{name},'%')
+            </if>
+            <if test="create_time != null and create_time !=''">
+                and create_time = #{create_time})
+            </if>
+        </where>
+    </select>
+
+
+    <!--依照ID查詢員工-->
+    <select id="EmpSelectById">
+        select * from emp where id = #{id};
+
+    </select>
+    <!--登入教驗-->
+    <select id="EmpSelectByUsername">
+        select * from emp
+        where username = #{username};
+    </select>
+
+
+</mapper>

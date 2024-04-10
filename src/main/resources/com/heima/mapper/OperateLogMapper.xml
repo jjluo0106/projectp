@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.heima.mapper.OperateLogMapper">
+
+
+    <insert id="OperateLogInsert">
+        insert into operatelog(operateUser, className, methodName, methodParams, returnValue, costTime)
+        VALUES(#{operateUser},#{className},#{methodName},#{methodParams},#{returnValue},#{costTime});
+    </insert>
+</mapper>
