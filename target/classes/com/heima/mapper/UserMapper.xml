@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.heima.mapper.UserMapper">
+
+<!--    新增-->
+    <insert id="userInsert">
+        insert into db1.user(id, account, passWord, userName, image, level, createTime, updateTime)
+        values (
+        null, #{account}, #{passWord}, #{userName}, #{image}, #{level}, NOW(), NOW()
+        )
+    </insert>
+
+    <!--    刪除-->
+    <delete id="userDelete">
+        <if test="ids != null and ids != ''">
+            delete from user where id in
+            <foreach collection="ids" item="id" separator="," open="(" close=")">
+                #{id}
+            </foreach>
+        </if>
+    </delete>
+
+    <update id="userUpdate">
+        update user
+        <set>
+            <if test=" account != null and account != ''">account = #{account} ,</if>
+            <if test=" passWord != null and passWord != ''">passWord = #{passWord},</if>
+            <if test=" userName != null and userName != ''">userName = #{userName},</if>
+            <if test=" image != null and image != ''">image = #{image},</if>
+            <if test=" level != null and level != ''">level = #{level},</if>
+
+            updateTime = NOW()
+        </set>
+        where id = #{id};
+    </update>
+
+
+    <!--    查詢所有-->
+    <select id="userSelectAll" resultType="com.heima.pojo.User">
+        select * from db1.user;
+    </select>
+
+
+    <select id="selectByAccount" resultType="com.heima.pojo.User">
+        select * from db1.user where account = #{account};
+    </select>
+
+</mapper>
